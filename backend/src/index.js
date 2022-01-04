@@ -2,9 +2,11 @@ require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const port = 4000;
+const port = 4001;
 const app = express();
+const tag = require('./route/TagRoute')
 const user = require('./route/UserRoute')
+
 const {DB}=require('./configuration/Config')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
@@ -19,8 +21,8 @@ mongoose.connect(DB,{
 }).catch((err)=>{
     console.log({err: err });
 })
+app.use('/api/tag',tag);
 app.use('/api/user',user);
-
 app.listen(port,(err)=>{
 if(err){
     console.log( {err : err});
