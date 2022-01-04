@@ -6,11 +6,9 @@ const port = 4000;
 const app = express();
 const tag = require('./route/TagRoute')
 const user = require('./route/UserRoute')
-
-
-
 const question = require('./route/QuestionRoute')
-    
+
+
 const {DB}=require('./configuration/Config')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
@@ -27,9 +25,8 @@ mongoose.connect(DB,{
 })
 app.use('/api/tag',tag);
 app.use('/api/user',user);
-
-
 app.use('/api/question',question);
+//app.use('/api/question/:id',question);
 
 app.listen(port,(err)=>{
 if(err){
