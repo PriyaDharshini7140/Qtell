@@ -4,7 +4,9 @@ const router = express.Router()
 
 
 
-router.post('/question',QuestionController. question);
-
-
+router.post('/',QuestionController. question);
+router.put('/:id',QuestionController. updates);
+router.get('/view',QuestionController. views);
+router.get('/particularview/:id',QuestionController. particularview);
+router.patch('/',QuestionController. approval);
 module.exports = router
