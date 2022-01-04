@@ -11,5 +11,24 @@ module.exports={
            }catch (err){
             res.status(500).send(); 
             }
+    },
+    deletetag:async(req,res)=>{
+        try {
+            await Tag.deleteOne({ _id: req.params.id })
+            res.status(204).send()
+        } catch {
+            res.status(404)
+            res.send({ error: "Tag doesn't exist!" })
+        }
+    },
+    viewtag:async(req,res)=>{
+        const list=await Tag.find()
+        try {
+            console.log(list)
+            res.send(list)
+        } catch(err) {
+            res.status(404)
+           
+        }
     }
 }

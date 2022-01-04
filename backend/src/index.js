@@ -10,7 +10,7 @@ const user = require('./route/UserRoute')
 
 
 const question = require('./route/QuestionRoute')
-
+    
 const {DB}=require('./configuration/Config')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
