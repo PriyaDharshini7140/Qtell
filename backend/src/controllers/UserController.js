@@ -18,8 +18,8 @@ module.exports={
             if(!verifyPassword){
                 res.status(401).send({error:"password is invalid"});
             }
-            const token = await JwtHelpers.CreateToken(user);
-            const refresh_token = await JwtHelpers.RefreshToken(user)
+            const token = await JwtHelpers.CreateToken(user._id);
+            const refresh_token = await JwtHelpers.RefreshToken(user._id)
             user.token = token
             user.refresh_token = refresh_token
             await user.save()
@@ -31,5 +31,25 @@ module.exports={
                     res.status(500).send({error:err.message});
                 }
        
+    },
+    refresh_token:async(req,res)=>{
+        const refreshToken = req.body.refresh_token
+        try {
+            if(!refreshToken){
+                res.status(401).send({error:"Unauthorized Request"})
+            }
+            const user_id = await JwtHelpers.verifyRefreshToken(refreshToken);
+            const user  = await User.findById(user_id)
+            console.log(user);
+        
+            const token = await JwtHelpers.CreateToken(user_id);
+            const refresh_token = await JwtHelpers.RefreshToken(user_id)
+            user.token = token
+            user.refresh_token = refresh_token
+            await user.save()
+            res.send({ token,refresh_token})
+        } catch (error) {
+            
+        }
     }
 }

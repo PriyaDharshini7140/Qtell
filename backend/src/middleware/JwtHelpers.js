@@ -2,7 +2,7 @@ const {SECRET_KEY,TOKEN_EXPIRE,REFRESH_SECRET_KEY,REFRESH_TOKEN_EXPIRE} = requir
 const jwt = require("jsonwebtoken")
 module.exports={
     CreateToken : (user)=>{
-        return jwt.sign({user_id:user._id},SECRET_KEY,{
+        return jwt.sign({user_id:user},SECRET_KEY,{
             expiresIn:TOKEN_EXPIRE
         })
     },
@@ -26,20 +26,19 @@ module.exports={
     }
   },
   RefreshToken:(user)=>{
-    return jwt.sign({user_id:user._id},REFRESH_SECRET_KEY,{
+    return jwt.sign({user_id:user},REFRESH_SECRET_KEY,{
         expiresIn:REFRESH_TOKEN_EXPIRE
     })
 },
-verifyRefreshToken:()=>{
-  return async (refreshToken) => {
+verifyRefreshToken: async (refreshToken) => {
     try {
       const verified = await jwt.verify(refreshToken, REFRESH_SECRET_KEY);
       console.log("verification",verified);
     const user_id = verified.user_id;
-      next();
+      return user_id
     } catch (error) {
       res.status(400).json({ error: "Authentication Error: Invalid Token" });
     }
   }
-}
+
 }
