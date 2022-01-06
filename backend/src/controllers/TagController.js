@@ -1,4 +1,3 @@
-
 const Tag = require('../model/TagModel');
 module.exports={
     tag:async(req,res)=>{
