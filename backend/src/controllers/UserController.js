@@ -48,8 +48,8 @@ module.exports={
             user.refresh_token = refresh_token
             await user.save()
             res.send({ token,refresh_token})
-        } catch (error) {
-            
+        }  catch (err) {
+            res.status(500).send({error:err.message});
         }
     }
 }
