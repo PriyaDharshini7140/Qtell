@@ -13,9 +13,9 @@ module.exports={
             if(!user){
                 res.status(404).send({error:"user not found"});
             }
-            const verifyPassword = await user.ValidPassword(password) 
+            const verify_password = await user.ValidPassword(password) 
           
-            if(!verifyPassword){
+            if(!verify_password){
                 res.status(401).send({error:"password is invalid"});
             }
             const token = await JwtHelpers.CreateToken(user._id);
@@ -33,9 +33,9 @@ module.exports={
        
     },
     refresh_token:async(req,res)=>{
-        const refreshToken = req.body.refresh_token
+        const verify_refresh_Token = req.body.refresh_token
         try {
-            if(!refreshToken){
+            if(!verify_refresh_Token){
                 res.status(401).send({error:"Unauthorized Request"})
             }
             const user_id = await JwtHelpers.verifyRefreshToken(refreshToken);
