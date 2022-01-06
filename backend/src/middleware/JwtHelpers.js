@@ -6,8 +6,8 @@ module.exports={
             expiresIn:TOKEN_EXPIRE
         })
     },
-    checkPermission:() => {
-    return async (req, res, next) => {
+    checkPermission:async (req, res, next) => {
+ 
       const token = req.headers.authorization.split(' ')[1]
      console.log("token",token);
       if (!token) {
@@ -23,7 +23,7 @@ module.exports={
       } catch (error) {
         res.status(400).json({ error: "Authentication Error: Invalid Token" });
       }
-    }
+    
   },
   RefreshToken:(user)=>{
     return jwt.sign({user_id:user},REFRESH_SECRET_KEY,{
