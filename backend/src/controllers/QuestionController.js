@@ -1,6 +1,7 @@
 const Question = require("../model/QuestionModel");
 
 
+
 module.exports={
     createQuestion: async (req, res) => {
 	
@@ -55,16 +56,20 @@ catch (err){
 },
 approveQuestion: async (req, res) => {
 	try {
-		const approve = await Question.findById(req.body._id)
+		const approve = await Question.findById(req.body._id);
 
-      await question
-        .save()
+		if (req.body.is_active) {
+			approve.is_active = req.body.is_active;
+		}
 
-        .then((e) => res.status(201).send(e))
+		if (req.body.is_approved) {
+			approve.is_approved = req.body.is_approved;
+		}
 
-        .catch((e) => console.log(e));
-    } catch (err) {
-      res.status(500).send();
-    }
-  },
-}
+		await approve.save();
+		res.send(approve);
+	} catch {
+		res.status(500).send();
+	}
+},
+};
