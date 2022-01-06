@@ -1,12 +1,6 @@
 const Question = require("../model/QuestionModel");
 
-module.exports = {
-  question: async (req, res) => {
-    const question = new Question(req.body);
-    try {
-      console.log(question);
 
-<<<<<<< HEAD
 module.exports={
     createQuestion: async (req, res) => {
 	
@@ -62,7 +56,7 @@ catch (err){
 approveQuestion: async (req, res) => {
 	try {
 		const approve = await Question.findById(req.body._id)
-=======
+
       await question
         .save()
 
@@ -73,55 +67,4 @@ approveQuestion: async (req, res) => {
       res.status(500).send();
     }
   },
-  updates: async (req, res) => {
-    const updates = await Question.findByIdAndUpdate(
-      { _id: req.params.id },
-      req.body
-    );
-    try {
-      console.log(updates);
->>>>>>> d58fa26f5025644efe00c33e0f6ab512406844eb
-
-      await updates.save();
-      res.send(updates);
-    } catch (err) {
-      res.status(500).send();
-    }
-  },
-  views: async (req, res) => {
-    const view = await Question.find();
-    try {
-      console.log(view);
-      res.send(view);
-    } catch (err) {
-      res.status(500).send();
-    }
-  },
-  particularview: async (req, res) => {
-    const pview = await Question.findOne({ _id: req.params.id });
-    try {
-      console.log(pview);
-      res.send(pview);
-    } catch (err) {
-      res.status(500).send();
-    }
-  },
-  approval: async (req, res) => {
-    try {
-      const approve = await Question.findById(req.body._id);
-
-      if (req.body.is_active) {
-        approve.is_active = req.body.is_active;
-      }
-
-      if (req.body.is_approved) {
-        approve.is_approved = req.body.is_approved;
-      }
-
-      await approve.save();
-      res.send(approve);
-    } catch {
-      res.status(500).send();
-    }
-  },
-};
+}
