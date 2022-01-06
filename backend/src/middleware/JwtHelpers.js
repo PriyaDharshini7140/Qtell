@@ -1,7 +1,7 @@
 const {SECRET_KEY,TOKEN_EXPIRE,REFRESH_SECRET_KEY,REFRESH_TOKEN_EXPIRE} = require('../configuration/Config');
 const jwt = require("jsonwebtoken")
 module.exports={
-    CreateToken : (user)=>{
+    createToken : (user)=>{
         return jwt.sign({user_id:user},SECRET_KEY,{
             expiresIn:TOKEN_EXPIRE
         })
@@ -25,7 +25,7 @@ module.exports={
       }
     
   },
-  RefreshToken:(user)=>{
+  refreshToken:(user)=>{
     return jwt.sign({user_id:user},REFRESH_SECRET_KEY,{
         expiresIn:REFRESH_TOKEN_EXPIRE
     })

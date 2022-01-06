@@ -32,7 +32,7 @@ module.exports={
                 }
        
     },
-    refresh_token:async(req,res)=>{
+    tokenRefresh:async(req,res)=>{
         const verify_refresh_Token = req.body.refresh_token
         try {
             if(!verify_refresh_Token){
@@ -42,8 +42,8 @@ module.exports={
             const user  = await User.findById(user_id)
             console.log(user);
         
-            const token = await JwtHelpers.CreateToken(user_id);
-            const refresh_token = await JwtHelpers.RefreshToken(user_id)
+            const token = await JwtHelpers.createToken(user_id);
+            const refresh_token = await JwtHelpers.refreshToken(user_id)
             user.token = token
             user.refresh_token = refresh_token
             await user.save()
