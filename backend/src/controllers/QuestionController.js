@@ -2,7 +2,7 @@
 const Question = require('../model/QuestionModel');
 
 module.exports={
-    question: async (req, res) => {
+    createQuestion: async (req, res) => {
 	
 	const question = new Question(req.body);
 	try{
@@ -21,7 +21,7 @@ module.exports={
         
         }
 },
-updates: async (req, res) =>  {
+updateQuestion: async (req, res) =>  {
 	const updates = await Question.findByIdAndUpdate({_id: req.params.id },req.body)
 	 try {
 	
@@ -33,7 +33,7 @@ updates: async (req, res) =>  {
 		res.status(500).send();
 	}
 },
-views: async (req,res) => {
+viewQuestion: async (req,res) => {
 	const view = await Question.find()
 	try{
 		console.log(view)
@@ -43,7 +43,7 @@ catch (err){
 	res.status(500).send();
 }
 },
-particularview: async (req,res) => {
+viewparticularQuestion: async (req,res) => {
 	const pview = await Question.findOne({ _id: req.params.id })
 	try{
 		console.log(pview)
@@ -53,7 +53,7 @@ catch (err){
 	res.status(500).send();
 }
 },
-approval: async (req, res) => {
+approveQuestion: async (req, res) => {
 	try {
 		const approve = await Question.findById(req.body._id)
 

@@ -5,9 +5,9 @@ const router = express.Router()
 
 
 
-router.post('/',JwtHelpers.checkPermission,QuestionController. question);
-router.put('/:id',JwtHelpers.checkPermission,QuestionController. updates);
-router.get('/view',JwtHelpers.checkPermission,QuestionController. views);
-router.get('/particularview/:id',JwtHelpers.checkPermission,QuestionController. particularview);
-router.patch('/',JwtHelpers.checkPermission,QuestionController. approval);
+router.post('/', JwtHelpers.checkPermission, QuestionController.createQuestion);
+router.put('/:id', JwtHelpers.checkPermission, QuestionController.updateQuestion);
+router.get('/view', JwtHelpers.checkPermission, QuestionController.viewQuestion);
+router.get('/particularview/:id', JwtHelpers.checkPermission, QuestionController.viewparticularQuestion);
+router.patch('/approval',  QuestionController.approveQuestion);
 module.exports = router
