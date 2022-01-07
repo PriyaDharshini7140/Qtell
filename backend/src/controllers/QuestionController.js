@@ -58,13 +58,9 @@ approveQuestion: async (req, res) => {
 	try {
 		const approve = await Question.findById(req.body._id);
 
-		if (req.body.is_active) {
 			approve.is_active = req.body.is_active;
-		}
-
-		if (req.body.is_approved) {
 			approve.is_approved = req.body.is_approved;
-		}
+		
 
 		await approve.save();
 		res.send(approve);
