@@ -30,16 +30,5 @@ module.exports = {
             res.status(404)
 
         }
-
-  },
-  sortTag: async(req,res)=>{
-      const sortedlist= await Tag.find().sort({technology_name:1})
-      try {
-        console.log(sortedlist)
-        res.send(sortedlist)
-    } catch (err) {
-        res.status(404)
-
     }
-  }
 };
