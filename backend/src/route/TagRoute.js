@@ -5,7 +5,7 @@ const TagController = require("../controllers/TagController");
 const JwtHelpers = require("../middleware/JwtHelpers");
 
 
-router.post('/',  TagController.createTag);
-router.delete('/:id', TagController.deleteTag);
-router.get('/view', TagController.viewTag);
+router.post('/',JwtHelpers.checkPermission,  TagController.createTag);
+router.delete('/:id',JwtHelpers.checkPermission, TagController.deleteTag);
+router.get('/',JwtHelpers.checkPermission, TagController.viewTag);
 module.exports = router

@@ -8,7 +8,7 @@ module.exports = {
             await tag.save()
                 .then((e) => res.status(201).send(e))
         } catch (err) {
-            res.status(500).send(err);
+            res.status(500).send({error:"Tag Doesn't Created"});
         }
     },
     deleteTag: async (req, res) => {

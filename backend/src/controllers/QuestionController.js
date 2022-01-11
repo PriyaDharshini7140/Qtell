@@ -18,7 +18,7 @@ module.exports={
         
         }catch (err){
         
-        res.status(500).send();
+        res.status(500).send({error:"Question Doesn't Created"});
         
         }
 },
@@ -31,7 +31,7 @@ updateQuestion: async (req, res) =>  {
 		 await updates.save()
 		res.send(updates)
 	} catch (err){
-		res.status(500).send();
+		res.status(500).send({error:"Updation Failed"});
 	}
 },
 viewQuestion: async (req,res) => {
@@ -41,7 +41,7 @@ viewQuestion: async (req,res) => {
 		res.send(view)
 }
 catch (err){
-	res.status(500).send();
+	res.status(500);
 }
 },
 viewparticularQuestion: async (req,res) => {
@@ -51,7 +51,7 @@ viewparticularQuestion: async (req,res) => {
 		res.send(pview)
 }
 catch (err){
-	res.status(500).send();
+	res.status(500);
 }
 },
 approveQuestion: async (req, res) => {
@@ -65,7 +65,7 @@ approveQuestion: async (req, res) => {
 		await approve.save();
 		res.send(approve);
 	} catch {
-		res.status(500).send();
+		res.status(500).send({error:"Error Occured"});
 	}
 },
 };
