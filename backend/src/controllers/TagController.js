@@ -9,13 +9,13 @@ module.exports = {
                 .then((e) => res.status(201).send(e))
                 .catch((e) => console.log(e))
         } catch (err) {
-            res.status(500).send();
+            res.status(500).send(err);
         }
     },
     deleteTag: async (req, res) => {
         try {
             await Tag.deleteOne({ _id: req.params.id })
-            res.status(204).send()
+            res.status(204).send("Deleted Successfully")
         } catch {
             res.status(404)
             res.send({ error: "Tag doesn't exist!" })
